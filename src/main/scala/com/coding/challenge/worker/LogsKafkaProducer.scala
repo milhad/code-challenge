@@ -22,7 +22,7 @@ object LogsKafkaProducer extends LazyLogging {
     )
 
     val parser = new AccessLogParser()
-    val generateLogsCommand = "flog -f apache_combined -n 100 -d 1"
+    val generateLogsCommand = s"flog ${args.mkString(" ")}"
     val logStreamGenerator: Stream[String] = generateLogsCommand.lineStream_!
     logStreamGenerator.filter(_ != null).foreach { log =>
       logger.info(log)
