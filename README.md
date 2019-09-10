@@ -50,9 +50,13 @@ Once the database is ready, open your terminal, navigate to the project folder a
 `> sbt clean compile`
 
 To run **Logs generator** service, execute:
+
 `> sbt "runMain com.coding.challenge.worker.LogsKafkaProducer -f apache_combined -n 5"`
+
 This will start the service, generate 5 logs in **apache_combined** format (due to the `-f apache_combined -n 5` command arguments) and exit. For different command line options check documentation for `flog` on [https://github.com/mingrammer/flog#usage](https://github.com/mingrammer/flog#usage)
 
 To run **Logs analyzer** service, execute:
+
 `> sbt "runMain com.coding.challenge.worker.LogsAnalyzerSpark"`
+
 This command will start the service, continually read the stream of data from Kafka, calculate unique visits using Spark, and update the latest counts in PostgreSQL database.
